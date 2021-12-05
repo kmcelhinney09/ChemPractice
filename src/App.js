@@ -1,12 +1,18 @@
-import './App.css';
 import Header from './Header';
-import { CssBaseline} from '@material-ui/core';
+import PracticeSelection from './PracticeSelection';
+import { CssBaseline } from '@material-ui/core';
 
 function App() {
   return (
     <div className="App">
       <CssBaseline />
-      <Header />
+      <div>
+        <Header />
+      </div>
+      <div>
+        <PracticeSelection />
+      </div>
+
     </div>
   );
 }

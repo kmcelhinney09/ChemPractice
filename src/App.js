@@ -1,5 +1,6 @@
 import Header from './Header';
 import PracticeSelection from './PracticeSelection';
+import PracticeSettings from './PracticeSettings';
 import { CssBaseline, Container } from '@material-ui/core';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <Header />
       <div>
         <Container>
-          <PracticeSelection />
+          {/* <PracticeSelection /> */}
+          <PracticeSettings />
         </Container>
       </div>
 

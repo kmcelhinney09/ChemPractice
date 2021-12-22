@@ -1840,7 +1840,62 @@
       "electronegativityDifference": [
         "What is the electronegatiity difference between {name} and {name}?"
       ],
-      "answerOptions": [ ]
+      "answerOptions": []
+    }
+  ],
+  "highscores": [
+    {
+      "Bond Type": [
+        {
+          "id": 1,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "initals": "BBB",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "initals": "CCC",
+          "score": 0
+        }
+      ],
+      "Bond Prediction": [
+        {
+          "id": 1,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "initals": "BBB",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "initals": "CCC",
+          "score": 0
+        }
+      ],
+      "Electronegativity Difference": [
+        {
+          "id": 1,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 2,
+          "initals": "BBB",
+          "score": 0
+        },
+        {
+          "id": 3,
+          "initals": "CCC",
+          "score": 0
+        }
+      ]
     }
   ]
 }

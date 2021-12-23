@@ -22,10 +22,8 @@ function QuestionGeneration() {
             .then(elementData => {
                 const generatedQuestions = []
                 const elementsDataArray = getRandomElement(questionSettings.numberOfElements, questionSettings.numberOfQuestions, elementData)
-                console.log(elementsDataArray)
                 let answerChoiceOptionsData = questionSettings.answerChoices;
                 let answerChoiceOptions;
-                let correctAnswer;
                 let questionToRender;
                 const questionParts = questionSettings.questionStem.split(" ")
 
@@ -44,7 +42,6 @@ function QuestionGeneration() {
                             }
 
                             const elementForQuesiton = elementsDataArray[i + questionElementNumber]
-                            console.log(elementForQuesiton)
                             elementsUsed.push(elementForQuesiton)
                             if (questionSettings.numberOfElements > 1) {
                                 questionElementNumber += 1
@@ -60,7 +57,7 @@ function QuestionGeneration() {
                         }
                     }).join(" ")
                     if (questionSettings.questionType === "metalNonMetal") {
-                        correctAnswer = elementsDataArray[i + questionElementNumber]["propertiesBlock"]
+                        const correctAnswer = elementsDataArray[i + questionElementNumber]["propertiesBlock"]
                         answerChoiceOptions = answerChoiceOptionsData.map(answerChoice => {
                             if (answerChoice.answerText === correctAnswer) {
                                 return { ...answerChoice, isCorrect: true }
@@ -69,9 +66,15 @@ function QuestionGeneration() {
                         })
 
                     } else if (questionSettings.questionType === "predictBond") {
-                        correctAnswer = bondPrediction(elementsUsed)
+                        const correctAnswer = bondPrediction(elementsUsed)
+                        answerChoiceOptions = answerChoiceOptionsData.map(answerChoice => {
+                            if (answerChoice.answerText === correctAnswer) {
+                                return { ...answerChoice, isCorrect: true }
+                            }
+                            return answerChoice
+                        })
                     } else {
-                        correctAnswer = electroNegativityDifference(elementsUsed)
+                        const correctAnswer = electroNegativityDifference(elementsUsed)
                         answerChoiceOptionsData = [correctAnswer]
                         for (let i = 0; i < 3; i++) {
                             const wrongAnswer = electroNegativityDifference([elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)], elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)]])

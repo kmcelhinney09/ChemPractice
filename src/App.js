@@ -3,7 +3,6 @@ import Header from './Header';
 // import PracticeSettings from './PracticeSettings';
 import QuizRender from './QuizRender';
 // import HighScores from './HighScores';
-import QuestionGeneration from './QuestionGeneration';
 import { CssBaseline, Container } from '@material-ui/core';
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
           {/* <PracticeSettings /> */}
           <QuizRender />
           {/* <HighScores /> */}
-          {/* < QuestionGeneration /> */}
         </Container>
       </div>
 

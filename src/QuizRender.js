@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import QuestionCardGenerator from "./QuestionCardGenerator";
-// import QuestionGeneration from "./QuestionGeneration";
 import ScorePage from "./ScorePage";
 // import { v4 as uuidv4 } from 'uuid'
 
@@ -143,6 +142,7 @@ function QuizRender() {
 
     return (
         isLoading? <h1>Loading.......</h1> :
+        showScore?<ScorePage score={score} total={questions.length} />:
             <div> 
                 <h4>{`Question ${currentQuestion + 1}/ ${questions.length}`} </h4>
                 <QuestionCardGenerator
@@ -162,4 +162,3 @@ function QuizRender() {
 
 export default QuizRender;
 
-{/* <ScorePage score={score} total={questions.length} /> */}

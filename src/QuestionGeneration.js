@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
 
 
-function QuestionGeneration({ questionSettings, questionReturn }) {
+function QuestionGeneration() {
     const [questions, setQuestions] = useState([])
+    const [questionSettings, setQuestionSettings] = useState({
+        numberOfQuestions: 5,
+        numberOfElements: 2,
+        questionType: "predictBond",
+        questionStem: "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?",
+        answerChoices: [
+            { answerText: "ionic", "isCorrect": false },
+            { answerText: "polar covalent", "isCorrect": false },
+            { answerText: "non-polar covalent", "isCorrect": false }
+        ]
+    })
 
-       useEffect(() => {
-        const questionSettings = {
-            "numberOfQuestions": 5,
-            "quesionType": "electronegativityDifference",
-            "questionStem": "What is the electronegatiity difference between {name} and {name}?",
-            "numberOfElements": 2,
-            "answerChoices": []
-        }
 
+    useEffect(() => {
         fetch("http://localhost:6001/elements")
             .then(res => res.json())
             .then(elementData => {
                 const generatedQuestions = []
                 const elementsDataArray = getRandomElement(questionSettings.numberOfElements, questionSettings.numberOfQuestions, elementData)
-                let answerChoices = questionSettings.answerChoices
-                let correctAnswer
-                let questionToRender
+                console.log(elementsDataArray)
+                let answerChoiceOptionsData = questionSettings.answerChoices;
+                let answerChoiceOptions;
+                let correctAnswer;
+                let questionToRender;
                 const questionParts = questionSettings.questionStem.split(" ")
 
                 for (var i = 0; i < questionSettings.numberOfQuestions; i++) {
@@ -30,49 +36,56 @@ function QuestionGeneration({ questionSettings, questionReturn }) {
                         let dynamicData;
                         let hasQuestionMark = false;
                         if (part.includes("{")) {
-                            if(part.includes("?")){
+                            if (part.includes("?")) {
                                 dynamicData = part.slice(1, -2)
                                 hasQuestionMark = true;
-                            }else{
+                            } else {
                                 dynamicData = part.slice(1, -1)
                             }
-                            
+
                             const elementForQuesiton = elementsDataArray[i + questionElementNumber]
+                            console.log(elementForQuesiton)
                             elementsUsed.push(elementForQuesiton)
-                            if (questionSettings.numberOfElements > 1){
+                            if (questionSettings.numberOfElements > 1) {
                                 questionElementNumber += 1
                             }
-                            if (hasQuestionMark){
+                            if (hasQuestionMark) {
                                 return `${elementForQuesiton[dynamicData]}?`
-                            }else{
+                            } else {
                                 return elementForQuesiton[dynamicData]
                             }
-                            
+
                         } else {
                             return part
                         }
                     }).join(" ")
-                    if (questionSettings.quesionType === "metalNonMetal") {
+                    if (questionSettings.questionType === "metalNonMetal") {
                         correctAnswer = elementsDataArray[i + questionElementNumber]["propertiesBlock"]
-                    } else if (questionSettings.quesionType === "predictBond") {
+                        answerChoiceOptions = answerChoiceOptionsData.map(answerChoice => {
+                            if (answerChoice.answerText === correctAnswer) {
+                                return { ...answerChoice, isCorrect: true }
+                            }
+                            return answerChoice
+                        })
+
+                    } else if (questionSettings.questionType === "predictBond") {
                         correctAnswer = bondPrediction(elementsUsed)
                     } else {
                         correctAnswer = electroNegativityDifference(elementsUsed)
-                        answerChoices = [correctAnswer]
+                        answerChoiceOptionsData = [correctAnswer]
                         for (let i = 0; i < 3; i++) {
                             const wrongAnswer = electroNegativityDifference([elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)], elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)]])
-                            if (wrongAnswer === correctAnswer || answerChoices.includes(wrongAnswer)) {
+                            if (wrongAnswer === correctAnswer || answerChoiceOptionsData.includes(wrongAnswer)) {
                                 i--
                             }
                             else {
-                                answerChoices.push(wrongAnswer)
+                                answerChoiceOptionsData.push(wrongAnswer)
                             }
                         }
                     }
                     generatedQuestions.push({
-                        "question": questionToRender,
-                        "correctAnswer": correctAnswer,
-                        "answerChoices": answerChoices
+                        question: questionToRender,
+                        answerChoices: answerChoiceOptions
                     })
                 }
                 setQuestions(generatedQuestions)

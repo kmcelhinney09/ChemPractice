@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 
-function QuestionGeneration() {
-    const [questions, setQuestions] = useState([])
-    const [questionSettings, setQuestionSettings] = useState({
-        numberOfQuestions: 5,
-        numberOfElements: 2,
-        questionType: "electronegativityDifference",
-        questionStem: "What is the electronegatiity difference between {name} and {name}?",
-        answerChoices: []
-    })
-
-
+function QuestionGeneration({ returnQuestions, questionSettings}) {
+    console.log(questionSettings)
     useEffect(() => {
         fetch("http://localhost:6001/elements")
             .then(res => res.json())
@@ -90,18 +81,12 @@ function QuestionGeneration() {
                         answerChoices: answerChoiceOptions
                     })
                 }
-                setQuestions(generatedQuestions)
+                returnQuestions(generatedQuestions);
             })
     }, [])
 
 
-    return (
-        <div>
-            <h1>Question Generation</h1>
-            {console.log(questions)}
-        </div>
-
-    )
+    return null
 }
 
 function getRandomElement(numberOfElements, numberOfQuestions, elementData) {
@@ -144,3 +129,46 @@ function electroNegativityDifference(elementsUsed) {
 
 export default QuestionGeneration;
 
+// const questions = [
+    //     {
+    //         question: "Is hydrogen a metal, metalloid, or nonmetal?",
+    //         answerChoices: [
+    //             { answerText: "metal", isCorrect: false },
+    //             { answerText: "metalloid", isCorrect: false },
+    //             { answerText: "nonmetal", isCorrect: true }
+    //         ]
+    //     },
+    //     {
+    //         question: "Is oxygen a metal, metalloid, or nonmetal?",
+    //         answerChoices: [
+    //             { answerText: "metal", isCorrect: false },
+    //             { answerText: "metalloid", isCorrect: false },
+    //             { answerText: "nonmetal", isCorrect: true }
+    //         ]
+    //     },
+    //     {
+    //         question: "Is gold a metal, metalloid, or nonmetal?",
+    //         answerChoices: [
+    //             { answerText: "metal", isCorrect: true },
+    //             { answerText: "metalloid", isCorrect: false },
+    //             { answerText: "nonmetal", isCorrect: false }
+    //         ]
+    //     },
+    //     {
+    //         question: "Is iron a metal, metalloid, or nonmetal?",
+    //         answerChoices: [
+    //             { answerText: "metal", isCorrect: true },
+    //             { answerText: "metalloid", isCorrect: false },
+    //             { answerText: "nonmetal", isCorrect: false }
+    //         ]
+    //     },
+    //     {
+    //         question: "Is silicon a metal, metalloid, or nonmetal?",
+    //         answerChoices: [
+    //             { answerText: "metal", isCorrect: false },
+    //             { answerText: "metalloid", isCorrect: true },
+    //             { answerText: "nonmetal", isCorrect: false }
+    //         ]
+    //     },
+
+    // ]

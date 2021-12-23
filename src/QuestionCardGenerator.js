@@ -2,11 +2,11 @@ import React from "react";
 import { Typography, Card, Container, CardContent, Button } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid'
 
-function QuestionCardGenerator({ setShowScore, setScore, score, quizSize, currentQuestion, setQuestion, quesiton, answerChoices }) {
+function QuestionCardGenerator({ setShowScore, setScore, score, quizSize, currentQuestion, setCurrentQuestion, question, answerChoices }) {
     function handleAnswerClick(isCorrect) {
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < quizSize) {
-            setQuestion(nextQuestion)
+            setCurrentQuestion(nextQuestion)
         }else(
             setShowScore(true)
         )
@@ -21,7 +21,7 @@ function QuestionCardGenerator({ setShowScore, setScore, score, quizSize, curren
             <Card>
                 <CardContent>
                     <Typography variant="h4" gutterBottom>
-                        {quesiton}
+                        {question}
                     </Typography>
                     {answerChoices.map(choice =>
                         <Button key={uuidv4()} onClick={(e) => { handleAnswerClick(choice.isCorrect) }} variant="contained">{choice.answerText}</Button>

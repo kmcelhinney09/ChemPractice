@@ -3,18 +3,12 @@ import QuestionCardGenerator from "./QuestionCardGenerator";
 import ScorePage from "./ScorePage";
 // import { v4 as uuidv4 } from 'uuid'
 
-function QuizRender() {
+function QuizRender({ questionSettings }) {
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [showScore, setShowScore] = useState(false)
     const [score, setScore] = useState(0)
     const [questions, setQuestions] = useState([])
-    const [questionSettings, setQuestionSettings] = useState({
-        numberOfQuestions: 5,
-        numberOfElements: 2,
-        questionType: "electronegativityDifference",
-        questionStem: "What is the electronegatiity difference between {name} and {name}?",
-        answerChoices: []
-    })
+    
     const [isLoading, setIsLoading] = useState(true)
 
     
@@ -134,11 +128,10 @@ function QuizRender() {
                         answerChoices: answerChoiceOptions
                     })
                 }
-                console.log(generatedQuestions)
                 setQuestions(generatedQuestions);
                 setIsLoading(false)
             })
-    }, [])
+    }, [questionSettings])
 
     return (
         isLoading? <h1>Loading.......</h1> :

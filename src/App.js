@@ -1,8 +1,8 @@
 import Header from './Header';
 // import PracticeSelection from './PracticeSelection';
 // import PracticeSettings from './PracticeSettings';
-// import QuizRender from './QuizRender'
-import HighScores from './HighScores';
+import QuizRender from './QuizRender';
+// import HighScores from './HighScores';
 import { CssBaseline, Container } from '@material-ui/core';
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
         <Container>
           {/* <PracticeSelection /> */}
           {/* <PracticeSettings /> */}
-          {/* <QuizRender /> */}
-          <HighScores />
+          <QuizRender />
+          {/* <HighScores /> */}
         </Container>
       </div>
 

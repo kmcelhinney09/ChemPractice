@@ -1813,34 +1813,32 @@
   "questionStems": [
     {
       "id": 1,
+      "questionType":"metalNonMetal",
       "numberOfElements": 1,
-      "metalNonMetal": [
-        "Is {name} a metal, metalloid, or nonmetal?"
-      ],
-      "answerOptions": [
-        "Metal",
-        "Non-Metal, metalloid"
-      ]
+        "questionStem": "Is {name} a metal, metalloid, or nonmetal?",
+        "answerChoices": [
+            { "answerText": "metal", "isCorrect": false },
+            { "answerText": "metalloid", "isCorrect": false },
+            { "answerText": "nonmetal", "isCorrect": false }
+        ]
     },
     {
       "id": 2,
       "numberElements": 2,
-      "predictBond": [
-        "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?"
-      ],
-      "answerOptions": [
-        "ionic",
-        "polar covalent",
-        "non-polar covalent"
+      "questionType":"predictBond",
+      "questionStem": "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?",
+      "answerChoices": [
+        {"answerText": "ionic", "isCorrect":false},
+        {"answerText":"polar covalent", "isCorrect":false},
+        {"answerText":"non-polar covalent", "isCorrect":false}
       ]
     },
     {
       "id": 3,
       "numberElements": 2,
-      "electronegativityDifference": [
-        "What is the electronegatiity difference between {name} and {name}?"
-      ],
-      "answerOptions": []
+      "questionType":"electronegativityDifference",
+      "questionStem":"What is the electronegatiity difference between {name} and {name}?",
+      "answerChoices": []
     }
   ],
   "highscores": [

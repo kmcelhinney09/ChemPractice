@@ -6,13 +6,9 @@ function QuestionGeneration() {
     const [questionSettings, setQuestionSettings] = useState({
         numberOfQuestions: 5,
         numberOfElements: 2,
-        questionType: "predictBond",
-        questionStem: "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?",
-        answerChoices: [
-            { answerText: "ionic", "isCorrect": false },
-            { answerText: "polar covalent", "isCorrect": false },
-            { answerText: "non-polar covalent", "isCorrect": false }
-        ]
+        questionType: "electronegativityDifference",
+        questionStem: "What is the electronegatiity difference between {name} and {name}?",
+        answerChoices: []
     })
 
 
@@ -73,18 +69,21 @@ function QuestionGeneration() {
                             }
                             return answerChoice
                         })
-                    } else {
+                    } else if (questionSettings.questionType === "electronegativityDifference") {
                         const correctAnswer = electroNegativityDifference(elementsUsed)
-                        answerChoiceOptionsData = [correctAnswer]
+                        const correctOption = { answerText: correctAnswer, isCorrect: true }
+                        answerChoiceOptions = []
                         for (let i = 0; i < 3; i++) {
                             const wrongAnswer = electroNegativityDifference([elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)], elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)]])
                             if (wrongAnswer === correctAnswer || answerChoiceOptionsData.includes(wrongAnswer)) {
                                 i--
                             }
                             else {
-                                answerChoiceOptionsData.push(wrongAnswer)
+                                answerChoiceOptions.push({ answerText: wrongAnswer, isCorrect: false })
                             }
                         }
+                        const correctAnswerPlace = Math.floor(Math.random() * 3)
+                        answerChoiceOptions.splice(correctAnswerPlace, 0, correctOption)
                     }
                     generatedQuestions.push({
                         question: questionToRender,

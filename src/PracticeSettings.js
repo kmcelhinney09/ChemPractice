@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Slider, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Grid, Button } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
-function PracticeSettings() {
-    const [questionSettings, setQuestionSettings] = useState({
+function PracticeSettings({ questionSettings, setQuestionSettings }) {
+    const [formData, setformData] = useState({
         numberOfQuestions: 0,
         elementLabelStyle: "name"
     })
@@ -29,20 +30,35 @@ function PracticeSettings() {
             label: "20"
         },
     ]
+    const history = useHistory();
 
+    useEffect(() => {
+        fetch("http://localhost:6001/questionData")
+            .then(res => res.json())
+            .then(questionDataArray => {
+                questionDataArray.forEach(questionData => {
+                    if (questionData.questionType === questionSettings.questionType) {
+                        const newSettings = {...questionSettings, numberOfElements:questionData.numberOfElements, questionStem: questionData.questionStem, answerChoices:questionData.answerChoices}
+                        setQuestionSettings(newSettings)
+                    }
+                })
+            })
+    },[])
     function handleOnChange(e) {
         const name = e.target.name
         const value = e.target.value
 
-        setQuestionSettings({
-            ...questionSettings,
+        setformData({
+            ...formData,
             [name]: value,
         })
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
-        console.log(questionSettings)
+        const newSettings = {...questionSettings, numberOfQuestions:formData.numberOfQuestions}
+        setQuestionSettings(newSettings)
+        history.push("/Quiz")
     }
 
     return (
@@ -57,7 +73,7 @@ function PracticeSettings() {
                         <Slider
                             name="numberOfQuestions"
                             track={false}
-                            defaultValue={questionSettings.numberOfQuestions}
+                            defaultValue={formData.numberOfQuestions}
                             marks={marks}
                             step={null}
                             max={20}
@@ -71,7 +87,7 @@ function PracticeSettings() {
                             <RadioGroup
                                 row
                                 name="elementLabelStyle"
-                                value={questionSettings.elementLabelStyle}
+                                value={formData.elementLabelStyle}
                                 onChange={handleOnChange}
                             >
                                 <FormControlLabel value="name" control={<Radio />} label="Full name" />
@@ -87,4 +103,4 @@ function PracticeSettings() {
     )
 }
 
-export default PracticeSettings;
+export default PracticeSettings

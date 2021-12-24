@@ -10,23 +10,20 @@ import { Container } from '@material-ui/core';
 
 function App() {
   const [questionSettings, setQuestionSettings] = useState({
-    numberOfQuestions: 5,
-    numberOfElements: 2,
-    questionType: "predictBond",
-    questionStem: "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?",
-    answerChoices: [
-      { answerText: "ionic", isCorrect: false },
-      { answerText: "polar covalent", isCorrect: false },
-      { answerText: "non-polar covalent", isCorrect: false }
-    ]
+    numberOfQuestions: 0,
+    numberOfElements: 0,
+    questionType: "",
+    questionStem: "",
+    answerChoices: []
   })
+  console.log(questionSettings)
   return (
     <>
       <BrowserRouter>
         <Container>
           <Switch>
             <Route path="/PracticeSettings">
-              <PracticeSettings />
+              <PracticeSettings questionSettings={questionSettings} setQuestionSettings={setQuestionSettings}/>
             </Route>
             <Route path="/Quiz">
               <QuizRender questionSettings={questionSettings} />
@@ -35,7 +32,7 @@ function App() {
               <HighScores />
             </Route>
             <Route exact path="/">
-              <PracticeSelection />
+              <PracticeSelection questionSettings={questionSettings} setQuestionSettings={setQuestionSettings}/>
             </Route>
           </Switch>
         </Container>

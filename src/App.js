@@ -22,7 +22,7 @@ function App() {
     fetch("http://localhost:6001/highscores")
       .then(res => res.json())
       .then(highScoreDBData => {
-        const highScoreCatagorize = Object.entries(highScoreDBData[0])
+        const highScoreCatagorize = Object.entries(highScoreDBData).map(entry => entry[1])
         setHighScoreData(highScoreCatagorize)
       })
   }, [])

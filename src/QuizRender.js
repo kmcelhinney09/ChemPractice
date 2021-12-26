@@ -135,7 +135,7 @@ function QuizRender({ questionSettings, highScoreData }) {
 
     return (
         isLoading? <h1>Loading.......</h1> :
-        showScore?<ScorePage score={score} total={questions.length} />:
+        showScore?<ScorePage score={score} total={questions.length} highScoreData={highScoreData} questionType={questionSettings.questionType}/>:
             <div> 
                 <h4>{`Question ${currentQuestion + 1}/ ${questions.length}`} </h4>
                 <QuestionCardGenerator

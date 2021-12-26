@@ -1,12 +1,40 @@
-import React, { useState, useEffect}from "react";
-import {  Card, Container, CardContent, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Card, Container, CardContent, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-function ScorePage({ score, total }) {
-
+function ScorePage({ score, total, highScoreData, questionType }) {
     const history = useHistory();
+    let highScoreID = 0;
+    let questionCatagory; 
 
-    function handleClick(){
+    useEffect(() => {
+        highScoreQualification()
+    }, [])
+
+    function highScoreQualification() {
+        if (questionType === 'metalNonMetal') {
+            questionCatagory = 'Bond Type'
+        } else if (questionType === 'predictBond') {
+            questionCatagory = 'Bond Prediction'
+        } else if (questionType === 'electronegativityDifference') {
+            questionCatagory = 'Electronegativity Difference'
+        }
+        highScoreData.forEach(highScores => {
+            if (highScores.category === questionCatagory) {
+                highScores.scores.every(scoreData => {
+                    if(scoreData.score < score){
+                        highScoreID = scoreData.id
+                        return false
+                    }else{
+                        return true
+                    }
+                })
+            }
+        })
+        console.log(highScoreID)
+    }
+
+    function handleClick() {
         history.push("/HighScore")
     }
 

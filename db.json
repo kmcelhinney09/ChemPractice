@@ -1813,84 +1813,217 @@
   "questionData": [
     {
       "id": 1,
-      "questionType":"metalNonMetal",
+      "questionType": "metalNonMetal",
       "numberOfElements": 1,
-        "questionStem": "Is {name} a metal, metalloid, or nonmetal?",
-        "answerChoices": [
-            { "answerText": "metal", "isCorrect": false },
-            { "answerText": "metalloid", "isCorrect": false },
-            { "answerText": "nonmetal", "isCorrect": false }
-        ]
+      "questionStem": "Is {name} a metal, metalloid, or nonmetal?",
+      "answerChoices": [
+        {
+          "answerText": "metal",
+          "isCorrect": false
+        },
+        {
+          "answerText": "metalloid",
+          "isCorrect": false
+        },
+        {
+          "answerText": "nonmetal",
+          "isCorrect": false
+        }
+      ]
     },
     {
       "id": 2,
       "numberOfElements": 2,
-      "questionType":"predictBond",
+      "questionType": "predictBond",
       "questionStem": "Predict if {name} and {name} will produce an ionic, polar covalent, or non-polar covalent bond?",
       "answerChoices": [
-        {"answerText": "ionic", "isCorrect":false},
-        {"answerText":"polar covalent", "isCorrect":false},
-        {"answerText":"non-polar covalent", "isCorrect":false}
+        {
+          "answerText": "ionic",
+          "isCorrect": false
+        },
+        {
+          "answerText": "polar covalent",
+          "isCorrect": false
+        },
+        {
+          "answerText": "non-polar covalent",
+          "isCorrect": false
+        }
       ]
     },
     {
       "id": 3,
       "numberOfElements": 2,
-      "questionType":"electronegativityDifference",
-      "questionStem":"What is the electronegatiity difference between {name} and {name}?",
+      "questionType": "electronegativityDifference",
+      "questionStem": "What is the electronegatiity difference between {name} and {name}?",
       "answerChoices": []
     }
   ],
   "highscores": [
     {
-      "Bond Type": [
+      "id": 1,
+      "category": "Bond Type",
+      "scores": [
         {
           "id": 1,
+          "initals": "AAA",
+          "score": 30
+        },
+        {
+          "id": 2,
           "initals": "AAA",
           "score": 0
         },
         {
-          "id": 2,
-          "initals": "BBB",
+          "id": 3,
+          "initals": "AAA",
           "score": 0
         },
         {
-          "id": 3,
-          "initals": "CCC",
+          "id": 4,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 5,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 6,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 7,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 8,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 9,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 10,
+          "initals": "AAA",
           "score": 0
         }
-      ],
-      "Bond Prediction": [
+      ]
+    },
+    {
+      "id": 2,
+      "category": "Bond Prediction",
+      "scores": [
         {
           "id": 1,
+          "initals": "AAA",
+          "score": 30
+        },
+        {
+          "id": 2,
           "initals": "AAA",
           "score": 0
         },
         {
-          "id": 2,
-          "initals": "BBB",
+          "id": 3,
+          "initals": "AAA",
           "score": 0
         },
         {
-          "id": 3,
-          "initals": "CCC",
+          "id": 4,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 5,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 6,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 7,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 8,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 9,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 10,
+          "initals": "AAA",
           "score": 0
         }
-      ],
-      "Electronegativity Difference": [
+      ]
+    },
+    {
+      "id": 3,
+      "category": "Electronegativity Difference",
+      "scores": [
         {
           "id": 1,
+          "initals": "AAA",
+          "score": 30
+        },
+        {
+          "id": 2,
           "initals": "AAA",
           "score": 0
         },
         {
-          "id": 2,
-          "initals": "BBB",
+          "id": 3,
+          "initals": "AAA",
           "score": 0
         },
         {
-          "id": 3,
-          "initals": "CCC",
+          "id": 4,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 5,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 6,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 7,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 8,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 9,
+          "initals": "AAA",
+          "score": 0
+        },
+        {
+          "id": 10,
+          "initals": "AAA",
           "score": 0
         }
       ]

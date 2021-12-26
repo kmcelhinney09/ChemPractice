@@ -14,11 +14,11 @@ function HighScores({ highScoreData }) {
         isLoading ? <Typography variant="h1"> Loading.....</Typography> :
             <Container>
                 <Typography variant="h1">High Scores</Typography>
-                {highScoreData.map(category =>
-                    <Card key={category[0]}>
+                {highScoreData.map(highScoreCategory =>
+                    <Card key={highScoreCategory.category}>
                         <CardContent>
-                            <Typography variant="h3">{category[0]}</Typography>
-                            {category[1].map(scores =>
+                            <Typography variant="h3">{highScoreCategory.category}</Typography>
+                            {highScoreCategory.scores.map(scores =>
                                 <Typography variant="h5" key={scores.id}>{scores.initals} .......... {scores.score}</Typography>
                             )}
                         </CardContent>

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState, useEffect}from "react";
 import {  Card, Container, CardContent, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 function ScorePage({ score, total }) {
+
     const history = useHistory();
 
     function handleClick(){
         history.push("/HighScore")
     }
+
     return (
         <Container>
             <Card>

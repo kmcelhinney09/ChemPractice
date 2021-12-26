@@ -3,7 +3,7 @@ import QuestionCardGenerator from "./QuestionCardGenerator";
 import ScorePage from "./ScorePage";
 // import { v4 as uuidv4 } from 'uuid'
 
-function QuizRender({ questionSettings }) {
+function QuizRender({ questionSettings, highScoreData }) {
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [showScore, setShowScore] = useState(false)
     const [score, setScore] = useState(0)

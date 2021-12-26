@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PracticeSelection from './PracticeSelection';
 import PracticeSettings from './PracticeSettings';
@@ -9,6 +9,7 @@ import { Container } from '@material-ui/core';
 
 
 function App() {
+  const [highScoreData, setHighScoreData] = useState([])
   const [questionSettings, setQuestionSettings] = useState({
     numberOfQuestions: 0,
     numberOfElements: 0,
@@ -16,23 +17,32 @@ function App() {
     questionStem: "",
     answerChoices: []
   })
-  console.log(questionSettings)
+
+  useEffect(() => {
+    fetch("http://localhost:6001/highscores")
+      .then(res => res.json())
+      .then(highScoreDBData => {
+        const highScoreCatagorize = Object.entries(highScoreDBData[0])
+        setHighScoreData(highScoreCatagorize)
+      })
+  }, [])
+
   return (
     <>
       <BrowserRouter>
         <Container>
           <Switch>
             <Route path="/PracticeSettings">
-              <PracticeSettings questionSettings={questionSettings} setQuestionSettings={setQuestionSettings}/>
+              <PracticeSettings questionSettings={questionSettings} setQuestionSettings={setQuestionSettings} />
             </Route>
             <Route path="/Quiz">
-              <QuizRender questionSettings={questionSettings} />
+              <QuizRender questionSettings={questionSettings} highScoreData={highScoreData} />
             </Route>
             <Route path="/HighScore">
-              <HighScores />
+              <HighScores highScoreData={highScoreData}/>
             </Route>
             <Route exact path="/">
-              <PracticeSelection questionSettings={questionSettings} setQuestionSettings={setQuestionSettings}/>
+              <PracticeSelection questionSettings={questionSettings} setQuestionSettings={setQuestionSettings} />
             </Route>
           </Switch>
         </Container>

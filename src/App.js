@@ -10,6 +10,7 @@ import { Container } from '@material-ui/core';
 
 function App() {
   const [highScoreData, setHighScoreData] = useState([])
+  const [reloadHighScore, setReloadHighScore] = useState(false)
   const [questionSettings, setQuestionSettings] = useState({
     numberOfQuestions: 0,
     numberOfElements: 0,
@@ -25,7 +26,7 @@ function App() {
         const highScoreCatagorize = Object.entries(highScoreDBData).map(entry => entry[1])
         setHighScoreData(highScoreCatagorize)
       })
-  }, [])
+  }, [reloadHighScore])
 
   return (
     <>
@@ -36,7 +37,7 @@ function App() {
               <PracticeSettings questionSettings={questionSettings} setQuestionSettings={setQuestionSettings} />
             </Route>
             <Route path="/Quiz">
-              <QuizRender questionSettings={questionSettings} highScoreData={highScoreData} />
+              <QuizRender questionSettings={questionSettings} highScoreData={highScoreData} setReloadHighScore={setReloadHighScore}/>
             </Route>
             <Route path="/HighScore">
               <HighScores highScoreData={highScoreData}/>

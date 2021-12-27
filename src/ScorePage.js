@@ -2,60 +2,92 @@ import React, { useState, useEffect } from "react";
 import { Card, Container, CardContent, Button, Typography, TextField, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-function ScorePage({ score, total, highScoreData, questionType }) {
-    const history = useHistory();
-    let highScoreID = 0;
-    let questionCatagory;
-    let questionCatagoryID = 0;
+function ScorePage({ playerScore, total, highScoreData, questionType, setReloadHighScore }) {
     const [highScoreUpdate, setHighScoreUpdate] = useState(false)
     const [highScoreInitals, setHighScoreInitals] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
+    const history = useHistory();
+    let  questionCategoryID, oldHighScores, highScoreID
 
     useEffect(() => {
         highScoreQualification()
-    }, [])
+    }, [highScoreInitals])
 
     function highScoreQualification() {
-        if (questionType === 'metalNonMetal') {
-            questionCatagory = 'Bond Type'
-            questionCatagoryID = 1
-        } else if (questionType === 'predictBond') {
-            questionCatagory = 'Bond Prediction'
-            questionCatagoryID = 2
-        } else if (questionType === 'electronegativityDifference') {
-            questionCatagory = 'Electronegativity Difference'
-            questionCatagoryID = 3
-        }
+        let questionCategory, highScoreDataCopy, scoreId;
 
-        highScoreData.forEach(highScores => {
-            if (highScores.category === questionCatagory) {
-                highScores.scores.every(scoreData => {
-                    if (scoreData.score < score) {
-                        highScoreID = scoreData.id
+        if (questionType === 'metalNonMetal') {
+            questionCategory = 'Bond Type'
+            questionCategoryID = 1
+        } else if (questionType === 'predictBond') {
+            questionCategory = 'Bond Prediction'
+            questionCategoryID = 2
+        } else if (questionType === 'electronegativityDifference') {
+            questionCategory = 'Electronegativity Difference'
+            questionCategoryID = 3
+        }
+        
+        highScoreData.forEach(highScoreDataArray => {
+            if (highScoreDataArray.category === questionCategory) {
+                highScoreDataCopy = {...highScoreDataArray}
+                highScoreDataCopy.scores.every(oldScore => {
+                    if(oldScore.score < playerScore){
+                        scoreId = oldScore.id
                         setHighScoreUpdate(true)
                         return false
-                    } else {
+                    }else{
                         return true
                     }
                 })
             }
         })
+        oldHighScores = highScoreDataCopy
+        highScoreID = scoreId
+        setIsLoading(false)
     }
 
     function handleClick() {
+        setReloadHighScore(true)
         history.push("/HighScore")
     }
 
-    const handleSubmit = (e) => {
+    function creatScorePatchBody() {
+        const newScores = oldHighScores.scores.map(oldScore => {
+            if(oldScore.id === highScoreID){
+                return {...oldScore, initals:highScoreInitals, score:playerScore}
+            }else{
+                return oldScore
+            }
+        })
+        
+        return {...oldHighScores, scores: newScores}
+    }
+
+    function handleSubmit(e) {
         e.preventDefault()
-        console.log(highScoreInitals)
+        const patchURI = `http://localhost:6001/highscores/${questionCategoryID}`
+        console.log(patchURI)
+        const newBody = creatScorePatchBody()
+        console.log(newBody)
+
+        fetch(patchURI,{
+            method:"PATCH",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(newBody)
+        })
+        .then(res => res.json())
+        .then(updatedItem => handleClick())
     }
 
     return (
+        isLoading ? null :
         <Container>
             <Card>
                 <CardContent>
-                    <Typography variant="h4">Your score is {score} out of {total}</Typography>
-                    <Typography variant="h4">That is {(score / total) * 100}%</Typography>
+                    <Typography variant="h4">Your score is {playerScore} out of {total}</Typography>
+                    <Typography variant="h4">That is {(playerScore / total) * 100}%</Typography>
                 </CardContent>
             </Card>
             {highScoreUpdate ? <Card>

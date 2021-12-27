@@ -52,12 +52,18 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
     }
 
     function creatScorePatchBody() {
-        const newScores = oldHighScores.scores.map(oldScore => {
-            if(oldScore.id === highScoreID){
-                return {...oldScore, initals:highScoreInitals, score:playerScore}
-            }else{
-                return oldScore
-            }
+        // const newScores = oldHighScores.scores.map(oldScore => {
+        //     if(oldScore.id === highScoreID){
+        //         return {...oldScore, initals:highScoreInitals, score:playerScore}
+        //     }else{
+        //         return oldScore
+        //     }
+        // })
+        let newScores = [...oldHighScores.scores]
+        newScores.splice((highScoreID -1),0,{id:highScoreID, initals:highScoreInitals, score:playerScore})
+        newScores.pop()
+        newScores = newScores.map((scores, index) => {
+                return{...scores, id:index+1}            
         })
         
         return {...oldHighScores, scores: newScores}
@@ -100,8 +106,10 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                                     variant="outlined"
                                     label="Initals"
                                     required
-                                    defaultValue={highScoreInitals}
+                                    value={highScoreInitals}
                                     onChange={(e) => setHighScoreInitals(e.target.value)}
+                                    inputProps={{maxlength:3}}
+                                    helperText={`Character limit is 3 : ${highScoreInitals.length}/3`}
                                 />
                             </Grid>
                             <Grid item>

@@ -52,13 +52,6 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
     }
 
     function creatScorePatchBody() {
-        // const newScores = oldHighScores.scores.map(oldScore => {
-        //     if(oldScore.id === highScoreID){
-        //         return {...oldScore, initals:highScoreInitals, score:playerScore}
-        //     }else{
-        //         return oldScore
-        //     }
-        // })
         let newScores = [...oldHighScores.scores]
         newScores.splice((highScoreID -1),0,{id:highScoreID, initals:highScoreInitals, score:playerScore})
         newScores.pop()
@@ -72,9 +65,7 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
     function handleSubmit(e) {
         e.preventDefault()
         const patchURI = `http://localhost:6001/highscores/${questionCategoryID}`
-        console.log(patchURI)
         const newBody = creatScorePatchBody()
-        console.log(newBody)
 
         fetch(patchURI,{
             method:"PATCH",

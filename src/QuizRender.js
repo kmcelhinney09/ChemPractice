@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import QuestionCardGenerator from "./QuestionCardGenerator";
 import ScorePage from "./ScorePage";
-// import { v4 as uuidv4 } from 'uuid'
 
 function QuizRender({ questionSettings, highScoreData, setReloadHighScore }) {
     const [currentQuestion, setCurrentQuestion] = useState(0)

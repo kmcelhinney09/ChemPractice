@@ -94,7 +94,7 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                         <Grid container alignItems="left" direction="column">
                             <Grid item>
                                 <TextField
-                                    variant="outlined"
+                                    color="secondary"
                                     label="Initals"
                                     required
                                     value={highScoreInitals}
@@ -104,7 +104,7 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                                 />
                             </Grid>
                             <Grid item>
-                                <Button varient="contained" type="submit">Submit Initals</Button>
+                                <Button varient="outlined" type="submit" color="secondary">Submit High Score</Button>
                             </Grid>
                         </Grid>
 

@@ -1855,7 +1855,7 @@
       "id": 3,
       "numberOfElements": 2,
       "questionType": "electronegativityDifference",
-      "questionStem": "What is the electronegatiity difference between {name} and {name}?",
+      "questionStem": "What is the electronegatity difference between {name} and {name}?",
       "answerChoices": []
     }
   ],

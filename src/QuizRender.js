@@ -46,7 +46,7 @@ function QuizRender({ questionSettings, highScoreData, setReloadHighScore }) {
     function electroNegativityDifference(elementsUsed) {
         const elementOne = elementsUsed[0].electroNegativity === '' ? 0 : elementsUsed[0].electroNegativity
         const elementTwo = elementsUsed[1].electroNegativity === '' ? 0 : elementsUsed[1].electroNegativity
-        return (Math.abs(elementOne - elementTwo)).toFixed(2)
+        return (Math.abs(elementOne - elementTwo)).toFixed(1)
     }
 
     useEffect(() => {

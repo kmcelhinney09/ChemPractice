@@ -40,7 +40,7 @@ function PracticeSelection({ questionSettings, setQuestionSettings }) {
                             </Card>
                         </Link>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12} sm={6} md={4}>
                         <Link to="/PracticeSettings" style={{ textDecoration: 'none' }}>
                             <Card className={classes.card}>
                                 <CardActionArea onClick={() => handleQuestionSelection("metalNonMetal")}>

@@ -99,7 +99,7 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                                     required
                                     value={highScoreInitals}
                                     onChange={(e) => setHighScoreInitals(e.target.value)}
-                                    inputProps={{maxlength:3}}
+                                    inputProps={{maxLength:3}}
                                     helperText={`Character limit is 3 : ${highScoreInitals.length}/3`}
                                 />
                             </Grid>

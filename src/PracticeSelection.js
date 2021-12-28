@@ -4,6 +4,7 @@ import { Typography, Card, CardActionArea, Container, CardContent, CardMedia, Gr
 import useStyles from "./styles";
 import bondType from './data/images/bondType.png'
 import metalNonmetal from './data/images/Metal-NonIcon.png'
+import Electronegativity from './data/images/Electronegativity_Icon.png'
 
 function PracticeSelection({ questionSettings, setQuestionSettings }) {
     const classes = useStyles();
@@ -54,6 +55,27 @@ function PracticeSelection({ questionSettings, setQuestionSettings }) {
                                         </Typography>
                                         <Typography>
                                             In this section you will be asked to determin if an element is a metal, nonmetal, or metaloid
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Link to="/PracticeSettings" style={{ textDecoration: 'none' }}>
+                            <Card className={classes.card}>
+                                <CardActionArea onClick={() => handleQuestionSelection("electronegativityDifference")}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={Electronegativity}
+                                        title="Electronegativity Difference"
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography variant="h5" gutterBottom>
+                                            Electronegativity Difference
+                                        </Typography>
+                                        <Typography>
+                                            In this section you will be asked to calculate electronegativity difference between two elements
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

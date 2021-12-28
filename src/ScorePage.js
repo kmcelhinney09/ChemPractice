@@ -94,7 +94,6 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                         <Grid container alignItems="left" direction="column">
                             <Grid item>
                                 <TextField
-                                    color="secondary"
                                     label="Initals"
                                     required
                                     value={highScoreInitals}

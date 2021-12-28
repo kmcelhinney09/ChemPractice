@@ -63,15 +63,15 @@ function Header() {
                         ) : (
                             <>
                                 <Breadcrumbs aria-label="breadcrumb">
-                                    <Link underline="hover" color="inherit" href="/">
+                                    <Link underline="hover" color="text.secondary" href="/">
                                         Home
                                     </Link>
                                     <Link
                                         underline="hover"
-                                        color="inherit"
-                                        href="/about"
+                                        color="text.secondary"
+                                        href="/HighScore"
                                     >
-                                        Practice Selection
+                                        High Scores
                                     </Link>
                                 </Breadcrumbs>
                             </>

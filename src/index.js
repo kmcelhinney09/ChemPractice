@@ -18,7 +18,7 @@ const theme = createTheme({
         primary: '#000000',
         secondary: '#000000',
         disabled: 'rgba(70,68,68,0.61)',
-        hint: '#fafafa',
+        hint: '#ffffff',
       },
     },
     typography: {

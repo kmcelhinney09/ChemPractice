@@ -95,6 +95,7 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
                             <Grid item>
                                 <TextField
                                     label="Initals"
+                                    color="secondary"
                                     required
                                     value={highScoreInitals}
                                     onChange={(e) => setHighScoreInitals(e.target.value)}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Slider, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Grid, Button } from "@mui/material";
+import { Typography, Slider, Grid, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 function PracticeSettings({ questionSettings, setQuestionSettings }) {
@@ -145,20 +145,6 @@ function PracticeSettings({ questionSettings, setQuestionSettings }) {
                             valueLabelDisplay="auto"
                             onChange={handleOnChange}
                         />
-                    </Grid>
-                    <Grid item>
-                        <FormControl component="fieldset" >
-                            <FormLabel component="legend">Element Label Type</FormLabel>
-                            <RadioGroup
-                                row
-                                name="elementLabelStyle"
-                                value={formData.elementLabelStyle}
-                                onChange={handleOnChange}
-                            >
-                                <FormControlLabel value="name" control={<Radio />} label="Full name"/>
-                                <FormControlLabel value="symbol" control={<Radio />} label="Element Symbol" />
-                            </RadioGroup>
-                        </FormControl>
                     </Grid>
                     <Button varient="contained" type="submit">Save Settings</Button>
                 </Grid>

@@ -95,7 +95,7 @@ function PracticeSettings({ questionSettings, setQuestionSettings }) {
         }
     ]
     const history = useHistory();
-
+    
     useEffect(() => {
         fetch("http://localhost:6001/questionData")
             .then(res => res.json())

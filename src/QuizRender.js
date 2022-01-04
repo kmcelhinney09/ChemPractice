@@ -14,7 +14,13 @@ function QuizRender({ questionSettings, highScoreData, setReloadHighScore }) {
     function getRandomElement(numberOfElements, numberOfQuestions, elementData) {
         const elementsArray = [];
         const elementIdArray = [];
-        const numberOfElementsNeeded = numberOfElements * numberOfQuestions
+        let numberOfElementsNeeded;
+        if (numberOfQuestions < 6){
+            numberOfElementsNeeded = numberOfElements * 6
+        } else{
+            numberOfElementsNeeded = numberOfElements * numberOfQuestions
+        }
+        
         for (let i = 0; i < numberOfElementsNeeded; i++) {
             const randomElementId = Math.floor(Math.random() * 94)
             elementData.forEach(elements => {
@@ -112,7 +118,7 @@ function QuizRender({ questionSettings, highScoreData, setReloadHighScore }) {
                         answerChoiceOptions = []
                         for (let i = 0; i < 3; i++) {
                             const wrongAnswer = electroNegativityDifference([elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)], elementsDataArray[Math.floor(Math.random() * elementsDataArray.length)]])
-                            if (wrongAnswer === correctAnswer || answerChoiceOptionsData.includes(wrongAnswer)) {
+                            if (wrongAnswer === correctAnswer || answerChoiceOptionsData.some(choice => choice.answerText === wrongAnswer)) {
                                 i--
                             }
                             else {

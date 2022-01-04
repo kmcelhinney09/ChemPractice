@@ -84,12 +84,12 @@ function ScorePage({ playerScore, total, highScoreData, questionType, setReloadH
             <Card>
                 <CardContent>
                     <Typography variant="h4">Your score is {playerScore} out of {total}</Typography>
-                    <Typography variant="h4">That is {(playerScore / total) * 100}%</Typography>
+                    <Typography variant="h4">That is {((playerScore / total) * 100).toFixed(2)}%</Typography>
                 </CardContent>
             </Card>
             {highScoreUpdate ? <Card>
                 <CardContent>
-                    <Typography variant="h4">Congradulations You have made the High Score Roster!</Typography>
+                    <Typography variant="h4">Congradulations! You have made the High Score Roster!</Typography>
                     <form autoComplete="off" onSubmit={handleSubmit}>
                         <Grid container alignItems="left" direction="column">
                             <Grid item>
